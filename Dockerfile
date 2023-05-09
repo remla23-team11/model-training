@@ -1,5 +1,5 @@
 # Dockerfile
-FROM python:3.7-slim
+FROM python:3.9-slim-buster
 WORKDIR /root
 COPY requirements.txt /root/
 RUN pip install -r requirements.txt
