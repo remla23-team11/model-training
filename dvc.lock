@@ -1,0 +1,34 @@
+schema: '2.0'
+stages:
+  preprocess:
+    cmd: python src/preproccesing_dataset.py
+    deps:
+    - path: a1_RestaurantReviews_HistoricDump.tsv
+      md5: 102f1f4193e0bdebdd6cce7f13e0a839
+      size: 54686
+    - path: src/preproccesing_dataset.py
+      md5: 83ef10c718f9126723da08525adc6f77
+      size: 563
+    outs:
+    - path: out/c1_BoW_Sentiment_Model.pkl
+      md5: afebbaa0b59b0d9a19fb0ca6aca2f5ec
+      size: 39826
+    - path: out/preprocessed.joblib
+      md5: 49a5fe2e0f8aa641ca15e2d33ea4a8f9
+      size: 10224187
+  train_model:
+    cmd: python src/train_model.py
+    deps:
+    - path: a1_RestaurantReviews_HistoricDump.tsv
+      md5: 102f1f4193e0bdebdd6cce7f13e0a839
+      size: 54686
+    - path: out/preprocessed.joblib
+      md5: 49a5fe2e0f8aa641ca15e2d33ea4a8f9
+      size: 10224187
+    - path: src/train_model.py
+      md5: 774d194c203664d2a2ab407a960b9fd3
+      size: 516
+    outs:
+    - path: out/c2_Classifier_Sentiment_model.joblib
+      md5: 6dc9442ee5093c692b316f00f3964956
+      size: 46127
