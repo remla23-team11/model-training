@@ -11,7 +11,7 @@ stages:
       size: 563
     outs:
     - path: out/c1_BoW_Sentiment_Model.pkl
-      md5: dccd6e2936b6320d4c56350a92b24174
+      md5: c7d963a694f1678fb31834e3d666eea2
       size: 39826
     - path: out/preprocessed.joblib
       md5: 49a5fe2e0f8aa641ca15e2d33ea4a8f9
@@ -26,12 +26,12 @@ stages:
       md5: 49a5fe2e0f8aa641ca15e2d33ea4a8f9
       size: 10224187
     - path: src/train_model.py
-      md5: be37abf033a51d6993434d7b1b05aa40
-      size: 883
+      md5: 1a9f517de40f2c6abf7ccea0779c01fa
+      size: 1018
     outs:
     - path: out/c2_Classifier_Sentiment_model.joblib
       md5: 6dc9442ee5093c692b316f00f3964956
       size: 46127
     - path: summary.json
-      md5: cd6f5fb4cb9281088914cac59ba8be5c
-      size: 32
+      md5: 9dfa5fbd77cc66473b9e967bd9b7e0f8
+      size: 92
