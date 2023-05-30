@@ -1,7 +1,5 @@
 import numpy as np
 import pandas as pd
-from sklearn.feature_extraction.text import CountVectorizer
-from sklearn.metrics import confusion_matrix, accuracy_score
 import pickle
 import joblib
 
