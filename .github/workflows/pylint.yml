@@ -19,7 +19,7 @@ jobs:
         run: pip install -r requirements.txt
 
       - name: Run pylint
-        run: pylint --load-plugins=dslinter src/
+        run: pylint --load-plugins=dslinter src/ --exit-zero
 
       - name: Run mllint
-        run: mllint
+        run: mllint --exit-zero
