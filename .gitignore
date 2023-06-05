@@ -1,1 +1,95 @@
+# DVC
+.dvc/cache/
+.dvc/tmp/
+.dvc/config.local
+.dvc/tmp.lock
+.dvc/state
+
+# Pytest
+.pytest_cache/
+pytest.ini
+
+# Mypy
 .mypy_cache/
+
+# Python specific
+*.pyc
+*.pyo
+__pycache__/
+
+# Compiled source
+*.com
+*.class
+*.dll
+*.exe
+*.o
+*.so
+
+# Cache files
+.cache/
+*.swp
+*.swo
+
+# Logs and reports
+*.log
+*.html
+*.xml
+*.json
+
+# Environment
+.env
+venv/
+env/
+.env.*
+
+# Dependency directories
+env/
+venv/
+node_modules/
+
+# Build artifacts
+build/
+dist/
+*.egg-info/
+*.egg
+*.egg-info
+MANIFEST
+*.manifest
+*.pyc
+*.pyo
+*.pyd
+*.pyz
+*.pyw
+*.pyc.*
+__pycache__
+*.db
+*.log.*
+*.sqlite3
+.svn/
+.git/
+
+# Ignore DVC cache files
+.dvc/cache
+
+# Jupyter Notebook specific
+.ipynb_checkpoints/
+
+# Editor specific
+.vscode/
+.idea/
+
+# Miscellaneous
+*.bak
+*.swp
+*.tmp
+*.tmp.*
+*.csv
+*.png
+*.jpg
+*.jpeg
+*.gif
+*.pdf
+*.doc
+*.docx
+*.xls
+*.xlsx
