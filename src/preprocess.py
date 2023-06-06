@@ -1,4 +1,4 @@
-from helper import get_csv_data
+from src.helper import get_csv_data
 from sklearn.feature_extraction.text import CountVectorizer
 import nltk
 from nltk.corpus import stopwords
@@ -24,7 +24,7 @@ def preprocess(dataset):
     pickle.dump(cv, open('out/c1_BoW_Sentiment_Model.pkl', "wb"))
     joblib.dump(preprocessed_data, 'out/preprocessed.joblib')
 
-    return preprocessed_data
+    return corpus
 
 
 def clean_review(review):

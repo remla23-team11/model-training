@@ -5,7 +5,7 @@ from sklearn.naive_bayes import GaussianNB
 import joblib
 import os
 import json
-from helper import get_csv_data
+from src.helper import get_csv_data
 
 
 def train_model(x, y):

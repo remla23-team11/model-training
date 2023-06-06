@@ -1,7 +1,7 @@
 from sklearn.metrics import confusion_matrix, accuracy_score
-from helper import get_csv_data
-from preprocess import preprocess
-from model import train, evaluate
+from src.helper import get_csv_data
+from src.preprocess import preprocess
+from src.model import train, evaluate
 
 
 def main():
