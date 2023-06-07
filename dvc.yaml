@@ -1,6 +1,6 @@
 stages:
   preprocess:
-    cmd: python src/preprocess.py
+    cmd: python -m src.preprocess
     deps:
       - a1_RestaurantReviews_HistoricDump.tsv
       - src/preprocess.py
@@ -9,7 +9,7 @@ stages:
       - out/c1_BoW_Sentiment_Model.pkl
       - out/preprocessed.joblib
   train_model:
-    cmd: python src/model.py
+    cmd: python -m src.model
     deps:
       - a1_RestaurantReviews_HistoricDump.tsv
       - out/preprocessed.joblib
