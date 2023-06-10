@@ -1,3 +1,5 @@
+[![Coverage Status](https://coveralls.io/repos/github/remla23-team11/model-training/badge.svg?branch=main)](https://coveralls.io/github/remla23-team11/model-training?branch=main)
+
 # Model Training
 Repository containing the ML training pipeline
 
