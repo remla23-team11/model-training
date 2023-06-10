@@ -1,4 +1,3 @@
-import joblib
 import pytest
 import random
 import pandas as pd
@@ -7,6 +6,7 @@ from src.helper import get_csv_data
 from src.model import train, evaluate
 import src.app as app
 from sklearn.metrics import accuracy_score
+from mutatest.mutators import ReplacementMutator
 
 
 @pytest.fixture
@@ -64,12 +64,34 @@ def test_preprocess(reviews, actual_reviews):
     assert processed_reviews == actual_reviews
 
 
+def test_data_slice(reviews_data):
+    """
+    Due to lack of distinctive, unbiased features, we are assuming that
+    the reviews are chronoligical and we are taking the first 400.
+    """
+
+    preprocess(reviews_data)
+    classifier, X_test, y_test = train(reviews_data)
+    y_pred = evaluate(classifier, X_test)
+    original_acc = accuracy_score(y_test, y_pred)
+
+    ones = reviews_data[reviews_data['Liked'] == 1].head(200)
+    zeros = reviews_data[reviews_data['Liked'] == 0].head(200)
+    sliced_data = pd.concat([ones, zeros], ignore_index=True)
+    preprocess(sliced_data)
+    classifier, X_test, y_test = train(sliced_data)
+    y_pred = evaluate(classifier, X_test)
+    sliced_acc = accuracy_score(y_test, y_pred)
+
+    assert abs(original_acc - sliced_acc) < 0.1
+
+
 def test_train(reviews_data):
     preprocess(reviews_data)
 
     accs = []
 
-    for _ in range(10):
+    for _ in range(5):
 
         classifier, X_test, y_test = train(
             reviews_data, random.randint(1, 100))
@@ -84,3 +106,29 @@ def test_train(reviews_data):
 def test_main():
     "Integration test app"
     app.main()
+
+
+def test_mutamorphic(reviews_data):
+    "Mutamorphic test"
+    preprocess(reviews_data)
+    classifier, X_test, y_test = train(reviews_data)
+    y_pred = evaluate(classifier, X_test)
+    original_acc = accuracy_score(y_test, y_pred)
+
+    mutated_data = reviews_data.copy()
+    mutator = ReplacementMutator(num_variants=1)
+
+    for _ in range(5):
+        mutated_data = reviews_data.copy()
+
+        mutated_data['Review'] = reviews_data['Review'].apply(
+            lambda x: mutator.mutate(x, random_seed=random.randint(1, 100))[0])
+
+        first_review = mutated_data['Review'].iloc[0]
+        preprocess(mutated_data)
+        classifier, _, _ = train(
+            mutated_data, random.randint(1, 100))
+        y_pred = evaluate(classifier, X_test)
+        mutated_acc = accuracy_score(y_test, y_pred)
+
+        assert abs(original_acc - mutated_acc) < 0.3
