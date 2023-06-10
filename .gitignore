@@ -8,6 +8,8 @@
 # Pytest
 .pytest_cache/
 pytest.ini
+.coverage
+htmlcov
 
 # Mypy
 .mypy_cache/

@@ -1,7 +1,12 @@
+import joblib
 import pytest
-
+import random
 import pandas as pd
 from src.preprocess import preprocess
+from src.helper import get_csv_data
+from src.model import train, evaluate
+import src.app as app
+from sklearn.metrics import accuracy_score
 
 
 @pytest.fixture
@@ -42,7 +47,40 @@ def actual_reviews():
     ]
 
 
+@pytest.fixture
+def reviews_data():
+    return get_csv_data('tests/data/RestaurantReviews.tsv')
+
+
+def test_get_csv_data(reviews_data):
+    # Test if the dataset is successfully loaded
+    assert len(reviews_data) > 0
+    assert reviews_data.shape[1] == 2
+
+
 def test_preprocess(reviews, actual_reviews):
 
     processed_reviews = preprocess(reviews)
     assert processed_reviews == actual_reviews
+
+
+def test_train(reviews_data):
+    preprocess(reviews_data)
+
+    accs = []
+
+    for _ in range(10):
+
+        classifier, X_test, y_test = train(
+            reviews_data, random.randint(1, 100))
+        y_pred = evaluate(classifier, X_test)
+        accuracy = accuracy_score(y_test, y_pred)
+        accs.append(accuracy)
+
+    assert all(abs(acc1 - acc2) <= 0.2 for i, acc1 in enumerate(accs)
+               for acc2 in accs[i+1:])
+
+
+def test_main():
+    "Integration test app"
+    app.main()
