@@ -1,10 +1,9 @@
-name: Automated Testing
+name: Linting & Testing
 
 on: [push, pull_request]
 
 jobs:
   test:
-    name: Run Tests
     runs-on: ubuntu-latest
 
     steps:
@@ -18,6 +17,12 @@ jobs:
 
       - name: Install Dependencies
         run: pip install -r requirements.txt
+
+      - name: Run pylint
+        run: pylint --load-plugins=dslinter src/ --exit-zero
+
+      - name: Run mllint
+        run: mllint --exit-zero
 
       - name: Run Tests
         run: coverage run --source=src -m pytest -v tests && coverage report -m
