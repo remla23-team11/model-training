@@ -9,3 +9,5 @@ mutamorphic-test
 mllint
 dvc
 dvc-gdrive
+pylint
+dslinter
