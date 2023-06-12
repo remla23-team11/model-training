@@ -1,20 +1,22 @@
 stages:
   preprocess:
-    cmd: python src/preproccesing_dataset.py
+    cmd: python -m src.preprocess
     deps:
-    - a1_RestaurantReviews_HistoricDump.tsv
-    - src/preproccesing_dataset.py
+      - a1_RestaurantReviews_HistoricDump.tsv
+      - src/preprocess.py
+      - src/helper.py
     outs:
-    - out/c1_BoW_Sentiment_Model.pkl
-    - out/preprocessed.joblib
+      - out/c1_BoW_Sentiment_Model.pkl
+      - out/preprocessed.joblib
   train_model:
-    cmd: python src/train_model.py
+    cmd: python -m src.model
     deps:
-    - a1_RestaurantReviews_HistoricDump.tsv
-    - out/preprocessed.joblib
-    - src/train_model.py
+      - a1_RestaurantReviews_HistoricDump.tsv
+      - out/preprocessed.joblib
+      - src/model.py
+      - src/helper.py
     outs:
-    - out/c2_Classifier_Sentiment_model.joblib
+      - out/c2_Classifier_Sentiment_model.joblib
     metrics:
       - summary.json:
           cache: false
