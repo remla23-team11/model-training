@@ -22,7 +22,7 @@ jobs:
         run: pylint --load-plugins=dslinter src/ --exit-zero
 
       - name: Run mllint
-        run: mllint --exit-zero
+        run: mllint
 
       - name: Run Tests
         run: coverage run --source=src -m pytest -v tests && coverage report -m
