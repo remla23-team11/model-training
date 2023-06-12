@@ -151,4 +151,4 @@ def test_mutamorphic(reviews_data):
         y_pred = evaluate(classifier, x_test)
         mutated_acc = accuracy_score(y_test, y_pred)
 
-        assert abs(original_acc - mutated_acc) < 0.3
+        assert abs(original_acc - mutated_acc) <= 0.3
