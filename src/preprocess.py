@@ -15,7 +15,7 @@ all_stopwords.remove('not')
 
 def preprocess(dataset):
     """
-    Preprocesses the dataset by cleaning the reviews and converting 
+    Preprocesses the dataset by cleaning the reviews and converting
     them to a Bag-of-Words representation.
 
     Args:
@@ -40,7 +40,7 @@ def preprocess(dataset):
 
 def clean_review(review):
     """
-    Cleans a review by removing non-alphabetic characters, converting to 
+    Cleans a review by removing non-alphabetic characters, converting to
     lowercase, removing stopwords, and performing stemming.
 
     Args:
