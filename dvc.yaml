@@ -1,8 +1,14 @@
 stages:
+  load_data:
+    cmd: python -m src.load_data
+    deps:
+      - src/load_data.py
+    outs:
+      - out/dataset.tsv
   preprocess:
     cmd: python -m src.preprocess
     deps:
-      - a1_RestaurantReviews_HistoricDump.tsv
+      - out/dataset.tsv
       - src/preprocess.py
       - src/helper.py
     outs:
@@ -11,8 +17,8 @@ stages:
   train_model:
     cmd: python -m src.model
     deps:
-      - a1_RestaurantReviews_HistoricDump.tsv
       - out/preprocessed.joblib
+      - out/dataset.tsv
       - src/model.py
       - src/helper.py
     outs:

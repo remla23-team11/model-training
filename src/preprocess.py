@@ -59,5 +59,5 @@ def clean_review(review):
 
 
 if __name__ == '__main__':
-    dataset_main = get_csv_data('a1_RestaurantReviews_HistoricDump.tsv')
+    dataset_main = get_csv_data('out/dataset.tsv')
     preprocess(dataset_main)

@@ -3,37 +3,37 @@ stages:
   preprocess:
     cmd: python -m src.preprocess
     deps:
-    - path: a1_RestaurantReviews_HistoricDump.tsv
+    - path: out/dataset.tsv
       md5: 102f1f4193e0bdebdd6cce7f13e0a839
-      size: 55587
+      size: 54686
     - path: src/helper.py
-      md5: b3f98ab267144d6f8ffa7551595fac1a
-      size: 107
+      md5: a47204260ae77b9f146b683283844bbd
+      size: 189
     - path: src/preprocess.py
-      md5: 801ed9027afc5d275bc7c180a8c1cda3
-      size: 1149
+      md5: db804ab0c085a6e5f4ff0dca67df0bc7
+      size: 1626
     outs:
     - path: out/c1_BoW_Sentiment_Model.pkl
-      md5: cbb7bccb3acf2dbc748f0e6039e660a0
-      size: 34146
+      md5: 066ebabdebf15cde1295c67a1b31ba5e
+      size: 39826
     - path: out/preprocessed.joblib
       md5: 49a5fe2e0f8aa641ca15e2d33ea4a8f9
       size: 10224187
   train_model:
     cmd: python -m src.model
     deps:
-    - path: a1_RestaurantReviews_HistoricDump.tsv
+    - path: out/dataset.tsv
       md5: 102f1f4193e0bdebdd6cce7f13e0a839
-      size: 55587
+      size: 54686
     - path: out/preprocessed.joblib
       md5: 49a5fe2e0f8aa641ca15e2d33ea4a8f9
       size: 10224187
     - path: src/helper.py
-      md5: b3f98ab267144d6f8ffa7551595fac1a
-      size: 107
+      md5: a47204260ae77b9f146b683283844bbd
+      size: 189
     - path: src/model.py
-      md5: e69ec68acfc24afc5fb128f1f30dd7f9
-      size: 1610
+      md5: c8ca9149342ae3a2fec770d2fbd6c229
+      size: 2579
     outs:
     - path: out/c2_Classifier_Sentiment_model.joblib
       md5: 1d0f5e660ed68bb5bca084b3611892e8
@@ -41,3 +41,13 @@ stages:
     - path: summary.json
       md5: 20f5f52a61d08b05d4d1146d0bf26f2a
       size: 92
+  load_data:
+    cmd: python -m src.load_data
+    deps:
+    - path: src/load_data.py
+      md5: ebdd58a408f6d4f152cc75e178050f74
+      size: 155
+    outs:
+    - path: out/dataset.tsv
+      md5: 102f1f4193e0bdebdd6cce7f13e0a839
+      size: 54686
