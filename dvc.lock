@@ -14,7 +14,7 @@ stages:
       size: 1626
     outs:
     - path: out/c1_BoW_Sentiment_Model.pkl
-      md5: 066ebabdebf15cde1295c67a1b31ba5e
+      md5: 5f8dcad7f8e0d3e28e488b0bfea3ad56
       size: 39826
     - path: out/preprocessed.joblib
       md5: 49a5fe2e0f8aa641ca15e2d33ea4a8f9
@@ -45,8 +45,8 @@ stages:
     cmd: python -m src.load_data
     deps:
     - path: src/load_data.py
-      md5: ebdd58a408f6d4f152cc75e178050f74
-      size: 155
+      md5: 70adbae49c000760879bd4210d2285f2
+      size: 231
     outs:
     - path: out/dataset.tsv
       md5: 102f1f4193e0bdebdd6cce7f13e0a839
