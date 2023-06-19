@@ -2,13 +2,15 @@ from sklearn.metrics import confusion_matrix, accuracy_score
 from src.helper import get_csv_data
 from src.preprocess import preprocess
 from src.model import train, evaluate
+from src.load_data import load_data
 
 
 def main():
     """
     Main function to run the model training pipeline
     """
-    dataset = get_csv_data('a1_RestaurantReviews_HistoricDump.tsv')
+    load_data()
+    dataset = get_csv_data('out/dataset.tsv')
     preprocess(dataset)
     classifier, x_test, y_test = train(dataset)
     y_pred = evaluate(classifier, x_test)

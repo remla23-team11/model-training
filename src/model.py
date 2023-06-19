@@ -90,7 +90,7 @@ def evaluate(classifier, x_data):
 
 if __name__ == '__main__':
     # maybe give option to load test preprocessed data
-    dataset_main = get_csv_data('a1_RestaurantReviews_HistoricDump.tsv')
+    dataset_main = get_csv_data('out/dataset.tsv')
     cls, x_test_main, y_test_main = train(dataset_main)
     y_pred = evaluate(cls, x_test_main)
     set_scores(y_test_main, y_pred)
