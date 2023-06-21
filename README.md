@@ -14,13 +14,13 @@ pip install -r requirements.txt
 ## Running the Pipeline using DVC
 [DVC (Data Version Control)](https://dvc.org/) is a version control system for data and ML models. It helps you manage your ML experiments and models efficiently. This project uses DVC to manage the ML training pipeline.
 
-This dvc is set up in two different stages, the preprocessing_dataset stage and the train_model stage. 
+This dvc is set up in three different stages, load_data the preprocess stage and the model stage. 
 
 To fetch the current version of the pipeline one can use: `dvc pull`.
 
 To run the pipeline use `dvc repro` and to force a rune use `dvc repro -f`.
 
-Now you can see the metrics by using `dvc metrics show`.
+You can see the metrics by using `dvc metrics show`.
 
 ## Running the Pipeline Normally
 
@@ -28,6 +28,19 @@ If you prefer not to use DVC, you can run the pipeline directly.
 
 ```shell
 python -m src.app
+```
+
+## Code Quality
+To verify the code quality there are two libraries that are used, pylint and mllint, you can use them in the following way:
+
+For pylint with the DSLinter plugin use the following command:
+```shell
+pylint --load-plugins=dslinter src/ --exit-zero
+```
+
+For mllint use the following command:
+```shell
+mllint
 ```
 
 ## Testing

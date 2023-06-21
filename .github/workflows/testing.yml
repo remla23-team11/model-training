@@ -1,6 +1,6 @@
 name: Linting & Testing
 
-on: [push, pull_request]
+on: [pull_request]
 
 jobs:
   test:
@@ -29,3 +29,5 @@ jobs:
 
       - name: Coveralls GitHub Action
         uses: coverallsapp/github-action@v2
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
